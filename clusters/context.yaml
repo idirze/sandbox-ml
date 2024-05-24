@@ -14,6 +14,6 @@ context:
 
   # This is for cert-manager's users
   certificateIssuer:
-    public: cluster-internal
+    public: my-public-ca
     internal: cluster-internal
 
