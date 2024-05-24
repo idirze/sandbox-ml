@@ -4,6 +4,7 @@ context:
 
   cluster:
     name: kind
+    domain: kind.local
 
   apiServer:
     portOnLocalhost: 49670    # <== To configure
