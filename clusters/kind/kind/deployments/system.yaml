@@ -47,7 +47,7 @@ deployments:
     namespace: openldap
     vars:
       replicaCount: 1
-      ldapDomain:  "odp.com"
+      ldapDomain:  "okdp.io"
       adminUser: admin
       adminPassword: admin123
       configUser: "admin"
