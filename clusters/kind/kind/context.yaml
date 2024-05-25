@@ -15,6 +15,6 @@ context:
         last: 172.18.200.4   # <== To configure
 
   ingress:
-    urlRoot: ingress.kind.local
+    url: ingress.kind.local
     vip: 172.18.200.1    # <== To configure
 
