@@ -21,22 +21,22 @@ context:
     customLdifFiles:
       00-root.ldif: |-
         # Root creation
-        dn: dc=okdp,dc=com
+        dn: dc=okdp,dc=io
         objectClass: dcObject
         objectClass: organization
         o: OpenDataPlatform
 
       01-base-ou.ldif: |-
-        dn: ou=Users,dc=okdp,dc=com
+        dn: ou=Users,dc=okdp,dc=io
         objectClass: organizationalUnit
         ou: Users
 
-        dn: ou=Groups,dc=okdp,dc=com
+        dn: ou=Groups,dc=okdp,dc=io
         objectClass: organizationalUnit
         ou: Groups
 
       03-first-groups.ldif: |-
-        dn: cn=devs,ou=Groups,dc=okdp,dc=com
+        dn: cn=devs,ou=Groups,dc=okdp,dc=io
         objectclass: posixGroup
         objectclass: top
         gidnumber: 500
@@ -44,7 +44,7 @@ context:
         memberUid: alaint
         memberUid: alext
 
-        dn: cn=ops,ou=Groups,dc=okdp,dc=com
+        dn: cn=ops,ou=Groups,dc=okdp,dc=io
         objectclass: posixGroup
         objectclass: top
         gidnumber: 501
@@ -53,7 +53,7 @@ context:
         memberUid: moncefl
 
       05-first-users.ldif: |-
-        dn: uid=sergea,ou=Users,dc=okdp,dc=com
+        dn: uid=sergea,ou=Users,dc=okdp,dc=io
         cn: Serge ALEXANDRE
         objectclass: inetOrgPerson
         objectclass: top
@@ -62,7 +62,7 @@ context:
         mail: salexandre@okdp.com
         userpassword: {SSHA}RJB2fZdnwqAV6tcUbcLm+Awzt2CEinBT
 
-        dn: uid=moncefl,ou=Users,dc=okdp,dc=com
+        dn: uid=moncefl,ou=Users,dc=okdp,dc=io
         cn: Moncef LAHOUAR
         objectclass: inetOrgPerson
         objectclass: top
@@ -71,7 +71,7 @@ context:
         mail: moncefl@okdp.com
         userpassword: moncefl123
 
-        dn: uid=idiri,ou=Users,dc=okdp,dc=com
+        dn: uid=idiri,ou=Users,dc=okdp,dc=io
         cn: Idir IZITOUNENE
         objectclass: inetOrgPerson
         objectclass: top
@@ -80,7 +80,7 @@ context:
         mail: idiri@okdp.com
         userpassword: idiri123
 
-        dn: uid=julest,ou=Users,dc=okdp,dc=com
+        dn: uid=julest,ou=Users,dc=okdp,dc=io
         cn: Jules TESTEUR
         objectclass: inetOrgPerson
         objectclass: top
@@ -89,7 +89,7 @@ context:
         mail: julest@okdp.com
         userpassword: julest123
 
-        dn: uid=alaint,ou=Users,dc=okdp,dc=com
+        dn: uid=alaint,ou=Users,dc=okdp,dc=io
         cn: Alain TERIEUR
         objectclass: inetOrgPerson
         objectclass: top
@@ -98,7 +98,7 @@ context:
         mail: alaint@okdp.com
         userpassword: alaint123
 
-        dn: uid=alext,ou=Users,dc=okdp,dc=com
+        dn: uid=alext,ou=Users,dc=okdp,dc=io
         cn: Alex TERIEUR
         objectclass: inetOrgPerson
         objectclass: top
