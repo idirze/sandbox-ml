@@ -59,7 +59,7 @@ context:
         objectclass: top
         sn: ALEXANDRE
         uid: sergea
-        mail: salexandre@okdp.com
+        mail: salexandre@okdp.io
         userpassword: {SSHA}RJB2fZdnwqAV6tcUbcLm+Awzt2CEinBT
 
         dn: uid=moncefl,ou=Users,dc=okdp,dc=io
@@ -68,7 +68,7 @@ context:
         objectclass: top
         sn: LAHOUAR
         uid: moncefl
-        mail: moncefl@okdp.com
+        mail: moncefl@okdp.io
         userpassword: moncefl123
 
         dn: uid=idiri,ou=Users,dc=okdp,dc=io
@@ -77,7 +77,7 @@ context:
         objectclass: top
         sn: IZITOUNENE
         uid: idiri
-        mail: idiri@okdp.com
+        mail: idiri@okdp.io
         userpassword: idiri123
 
         dn: uid=julest,ou=Users,dc=okdp,dc=io
@@ -86,7 +86,7 @@ context:
         objectclass: top
         sn: TESTEUR
         uid: julest
-        mail: julest@okdp.com
+        mail: julest@okdp.io
         userpassword: julest123
 
         dn: uid=alaint,ou=Users,dc=okdp,dc=io
@@ -95,7 +95,7 @@ context:
         objectclass: top
         sn: TERIEUR
         uid: alaint
-        mail: alaint@okdp.com
+        mail: alaint@okdp.io
         userpassword: alaint123
 
         dn: uid=alext,ou=Users,dc=okdp,dc=io
@@ -104,5 +104,5 @@ context:
         objectclass: top
         sn: TERIEUR
         uid: alext
-        mail: alext@okdp.com
+        mail: alext@okdp.io
         userpassword: alext123
