@@ -335,6 +335,10 @@ components:
                       - userAttr: uid
                         groupAttr: memberUid
                     nameAttr: cn
+            staticClients:
+            - name: "Jhub"
+              id: Jhub
+              secret: AsjhDFJcnsdlkjrEdEF
           ingress:
             enabled: true
             className: "nginx"
