@@ -289,8 +289,6 @@ components:
 
   - name: dex
     createNamespace: true
-#    vars:
-#      staticClients: []
     modules:
       - name: dex
         source: dex
@@ -336,11 +334,9 @@ components:
                         groupAttr: memberUid
                     nameAttr: cn
             staticClients:
-            - name: "Jhub"
-              id: Jhub
-              secret: AsjhDFJcnsdlkjrEdEF
-              redirectURIs:
-                - 'https://jhub.ingress.kind.local/hub/oauth_callback'
+              - name: "Jhub"
+                id: Jhub
+                secret: AsjhDFJcnsdlkjrEdEF
           ingress:
             enabled: true
             className: "nginx"
