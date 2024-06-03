@@ -31,11 +31,11 @@ components:
             annotations:
               cert-manager.io/cluster-issuer: {{ .Context.certificateIssuer.public }}
             hosts:
-              - host: podinfo.{{ .Context.ingress.urlRoot }}
+              - host: podinfo.{{ .Context.ingress.url }}
                 paths:
                   - path: /
                     pathType: ImplementationSpecific
             tls:
               - secretName: podinfo-tls
                 hosts:
-                  - podinfo.{{ .Context.ingress.urlRoot }}
+                  - podinfo.{{ .Context.ingress.url }}

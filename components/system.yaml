@@ -216,7 +216,7 @@ components:
             exposure:
               external:
                 ingress:
-                  host: skas.{{ .Context.ingress.urlRoot }}
+                  host: skas.{{ .Context.ingress.url }}
             kubeconfig:
               context:
                 name: skas@{{ .Context.cluster.name }}
