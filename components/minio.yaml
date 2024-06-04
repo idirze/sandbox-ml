@@ -1,0 +1,61 @@
+sources:
+  - name: jupyterhub
+    kind: HelmRepository
+    template: helmRepository
+    config:
+      url: https://charts.min.io/
+
+components:
+
+  - name: minio
+    modules:
+      - name: main
+        config:
+          timeout:  "5m"
+        source: minio
+        chart:
+          name: minio
+          version: 5.2.0
+        values: |
+          image:
+            repository: minio/minio
+          rootUser: "minio"
+          rootPassword: "minio123"
+          
+          drivesPerNode: 4
+          replicas: 4
+          pools: 1
+          
+          persistence:
+            enabled: true
+            storageClass: "standard"
+            accessMode: ReadWriteOnce
+            size: 1Gi
+          
+          ingress:
+            annotations:
+              cert-manager.io/cluster-issuer: my-public-ca
+              kubernetes.io/ingress.class: nginx
+              kubernetes.io/tls-acme: "true"
+            enabled: true
+            labels: { }
+            tls:
+              - hosts:
+                  - minio1.ingress.kind.local
+                secretName: minio1-tls
+            hosts:
+              - minio1.ingress.kind
+            path: /
+          consoleIngress:
+            enabled: true
+            labels: { }
+            annotations:
+              cert-manager.io/cluster-issuer: ca-issuer
+              kubernetes.io/ingress.class: nginx
+            tls:
+              - hosts:
+                  - minio1-console.ingress.kind.local
+                secretName: minio1-console-tls
+            hosts:
+              - minio1-console.ingress.kind.local
+            path: /
