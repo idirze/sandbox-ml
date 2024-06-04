@@ -1,0 +1,9 @@
+
+deployments:
+
+  - name: minio
+    component: minio
+    namespace: minio
+    dependsOn:
+      - deployment: ingress-nginx
+        module: main
