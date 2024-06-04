@@ -2,6 +2,7 @@
 deployments:
 
   - name: minio
+    enabled: false
     component: minio
     namespace: minio
     dependsOn:
