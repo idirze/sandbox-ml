@@ -59,3 +59,6 @@ components:
             hosts:
               - minio1-console.ingress.kind.local
             path: /
+          resources:
+            requests:
+              memory: 200Mi
