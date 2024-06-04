@@ -1,0 +1,120 @@
+sources:
+  - name: jupyterhub
+    kind: HelmRepository
+    template: helmRepository
+    config:
+      url: https://hub.jupyter.org/helm-chart/
+
+components:
+  - name: jupyterhub
+    createNamespace: true
+    modules:
+      - name: main
+        source: jupyterhub
+        chart:
+          name: jupyterhub
+          version: 3.3.7
+        values: |
+          hub:
+            config:
+              Authenticator:
+                auto_login: true
+              GenericOAuthenticator:
+                client_id: Jhub
+                client_secret: AsjhDFJcnsdlkjrEdEF
+                oauth_callback_url: https://jhub.ingress.kind.local/hub/oauth_callback
+                authorize_url: https://dex.ingress.kind.local/auth
+                token_url: https://dex.ingress.kind.local/token
+                userdata_url: https://dex.ingress.kind.local/userinfo
+                validate_server_cert: false
+                admin_groups:
+                  - ops
+                allowed_groups:
+                  - ops
+                scope:
+                  - openid
+                  - profile
+                  - email
+                  - groups
+                username_key: name
+              JupyterHub:
+                authenticator_class: generic-oauth
+            networkPolicy:
+              enabled: false
+            extraConfig:
+              extraConfig01.py: |
+                c.KubeSpawner.delete_grace_period = 120
+                c.ServerApp.allow_root = True
+            image:
+              pullPolicy: Always
+              pullSecrets: []
+              name: quay.io/jupyterhub/k8s-hub
+              tag: "3.3.7"
+            db:
+              type: sqlite-pvc
+              pvc:
+                storage: 1Gi
+                storageClassName: "standard"
+          
+          rbac:
+            create: true
+          
+          cull:
+            enabled: false
+          
+          proxy:
+            service:
+              type: ClusterIP
+          
+          ingress:
+            enabled: true
+            annotations:
+              nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+              cert-manager.io/cluster-issuer: "my-public-ca"
+            ingressClassName: nginx
+            hosts:
+              - "jhub.ingress.kind.local"
+            tls:
+              - secretName: jhub-tls
+                hosts:
+                  - jhub.ingress.kind.local
+          
+          scheduling:
+            userScheduler:
+              enabled: false
+            userPlaceholder:
+              enabled: false
+          
+          singleuser:
+            image:
+              name: ghcr.io/kubotal/spark-notebook
+              tag: "2024-05-27-001"
+          
+            storage:
+              homeMountPath: "/home/{username}"
+              dynamic:
+                storageClass: standard
+              type: dynamic
+            cloudMetadata:
+              blockWithIptables: false
+            uid: 0
+            fsGid: 0
+            extraEnv:
+              NB_USER: "$(JUPYTERHUB_USER)"
+              NB_UID: "1001"
+              NB_GID: "100"
+              CHOWN_HOME: "yes"
+              CHOWN_HOME_OPTS: "-R"
+              JUPYTER_ENABLE_LAB: "yes"
+              EDITOR: "vim"
+              GIT_SSL_NO_VERIFY: "false"
+            extraPodConfig:
+              automount_service_account_token: false
+              terminationGracePeriodSeconds: 120
+            networkPolicy:
+              enabled: false
+          prePuller:
+            hook:
+              enabled: false
+            continuous:
+              enabled: false
