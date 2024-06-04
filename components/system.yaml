@@ -337,7 +337,7 @@ components:
               - name: "Jhub"
                 id: Jhub
                 secret: AsjhDFJcnsdlkjrEdEF
-                redirectUrls:
+                redirectURIs:
                   - "https://jhub.ingress.kind.local/hub/oauth_callback"
           ingress:
             enabled: true
