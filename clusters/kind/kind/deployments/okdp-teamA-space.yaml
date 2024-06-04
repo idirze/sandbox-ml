@@ -1,9 +1,9 @@
 
 deployments:
 
-  - name: podinfo
-    component: podinfo
-    namespace: podinfo
+  - name: jupyterhub
+    component: jupyterhub
+    namespace: jupyterhub
     dependsOn:
       - deployment: ingress-nginx
         module: main
