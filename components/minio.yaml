@@ -1,5 +1,5 @@
 sources:
-  - name: jupyterhub
+  - name: minio
     kind: HelmRepository
     template: helmRepository
     config:
