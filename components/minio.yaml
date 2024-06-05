@@ -62,9 +62,3 @@ components:
           resources:
             requests:
               memory: 200Mi
-          buckets:
-           - name: bucket1
-             policy: none
-             purge: false
-             versioning: false
-             objectlocking: false
