@@ -53,7 +53,7 @@ components:
             spark.ui.filters: io.okdp.spark.authc.OidcAuthFilter
             spark.user.groups.mapping: io.okdp.spark.authz.OidcGroupMappingServiceProvider
             spark.history.ui.acls.enable: true
-            spark.io.okdp.spark.authc.OidcAuthFilter.param.issuer-uri: https://dex.{{ .Context.ingress.url }}/dex
+            spark.io.okdp.spark.authc.OidcAuthFilter.param.issuer-uri: https://dex.{{ .Context.ingress.url }}
             spark.io.okdp.spark.authc.OidcAuthFilter.param.redirect-uri: https://shs.{{ .Context.ingress.url }}/home
             spark.io.okdp.spark.authc.OidcAuthFilter.param.scope: openid+profile+email+offline_access+groups
             spark.io.okdp.spark.authc.OidcAuthFilter.param.cookie-max-age-minutes: 480
