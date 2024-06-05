@@ -43,7 +43,6 @@ spec:
             - clusters/kind/kind/context.yaml
             - clusters/kind/kind/deployments
             - components
-            - parents
             - templates.yaml
       sweepPeriod: 1m # TODO: Set to 1h after setup
     logger:

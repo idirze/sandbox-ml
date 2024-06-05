@@ -28,6 +28,12 @@ templates:
         releaseName: {{ .Meta.module.helmReleaseName  }}
         timeout: {{ .Config.timeout }}
         persistentClient: {{ .Config.persistentClient }}
+        {{- if eq .Meta.source.kind  "OCIRepository" }}
+        chartRef:
+          kind: OCIRepository
+          name: {{ .Meta.source.name }}
+          namespace: {{ .Meta.source.namespace }}
+        {{- else }}
         chart:
           spec:
             reconcileStrategy: {{ .Config.chart.reconcileStrategy }}
@@ -40,6 +46,7 @@ templates:
             version: {{ . }}
             {{- end }}
             interval: {{ .Config.chart.interval }}
+        {{- end }}
         install:
           createNamespace: {{ .Meta.deployment.createNamespace }}
           remediation:
@@ -103,6 +110,31 @@ templates:
         secretRef:
           name: {{ .name }}
         {{- end }}
-      
-      
-      
+
+
+  - name: ociRepository
+    config:
+      interval: "1m"  # TODO: Set to 24h after setup
+      url: # TBD
+      #     secretRef:
+      #       name: pull-github
+      version: # TBD
+    body: |
+      ---
+      apiVersion: source.toolkit.fluxcd.io/v1beta2
+      kind: {{ .Meta.source.kind }}
+      metadata:
+        name: {{ .Meta.source.name }}
+        namespace: {{ .Meta.source.namespace }}
+      spec:
+        interval: {{ .Config.interval }}   
+        layerSelector:
+          mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+          operation: copy      
+        url: {{ .Config.url }}
+        {{- with .Config.secretRef }}
+        secretRef:
+          name: {{ .name }}
+        {{- end }}
+        ref:
+          semver: "= {{ .Config.version }}"
