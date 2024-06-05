@@ -53,8 +53,4 @@ deployments:
       configUser: "admin"
       configPassword: admin123
 
-  - name: dex
-    enabled: true
-    component: dex
-    namespace: dex
 

@@ -1,5 +1,9 @@
 
 deployments:
+  - name: dex
+    enabled: true
+    component: dex
+    namespace: dex
 
   - name: minio
     enabled: true

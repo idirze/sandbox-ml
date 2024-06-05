@@ -16,7 +16,7 @@ metadata:
   name: kad-controller
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 15s
   serviceAccountName: kustomize-controller
   targetNamespace: flux-system
   storageNamespace: flux-system
@@ -30,7 +30,7 @@ spec:
         namespace: flux-system
       reconcileStrategy: Revision
       chart: kad-controller
-      version: "0.2.0-a1"
+      version: "0.2.0-a2"
       interval: 1m
   values:
     config:
@@ -43,8 +43,9 @@ spec:
             - clusters/kind/kind/context.yaml
             - clusters/kind/kind/deployments
             - components
+            - parents
             - templates.yaml
-      sweepPeriod: 2m # TODO: Set to 1h after setup
+      sweepPeriod: 1m # TODO: Set to 1h after setup
     logger:
       mode: dev
       level: info

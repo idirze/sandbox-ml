@@ -7,3 +7,4 @@ deployments:
     dependsOn:
       - deployment: ingress-nginx
         module: main
+
