@@ -158,7 +158,7 @@ components:
       - name: issuers
         source: flux-system
         chart:
-          path: charts/cert-issuers-0.1.0
+          path: charts/cert-issuers/0.1.0
         values: |
           {{ toYaml .Context.certIssuers }}
         dependsOn:
