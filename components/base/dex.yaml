@@ -1,0 +1,73 @@
+
+- name: dex
+  createNamespace: true
+  modules:
+    - name: dex
+      source: dex
+      chart:
+        name: dex
+        version: 0.17.1
+      values: |
+        config:
+          # Set it to a valid URL
+          issuer: https://dex.ingress.kind.local
+        
+          # See https://dexidp.io/docs/storage/ for more options
+          storage:
+            config:
+              inCluster: true
+            type: memory
+        
+          logger:
+            level: "debug"
+          connectors:
+            - type: ldap
+              id: ldap
+              name: OPENLDAP
+              config:
+                host: openldap-main.openldap.svc
+                insecureNoSSL: false
+                rootCAData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUY3RENDQTlTZ0F3SUJBZ0lVSjUrenBuZ1hUdGx1TmI0Q2tXWlBiSjU2L1VRd0RRWUpLb1pJaHZjTkFRRUwKQlFBd1RqRUxNQWtHQTFVRUJoTUNSbEl4RGpBTUJnTlZCQWdNQlZCaGNtbHpNUTR3REFZRFZRUUhEQVZRWVhKcApjekVOTUFzR0ExVUVDd3dFUzJsdVpERVFNQTRHQTFVRUF3d0hZMkV1YTJsdVpEQWVGdzB5TkRBek1URXhNekk0Ck5URmFGdzB6TkRBek1Ea3hNekk0TlRGYU1FNHhDekFKQmdOVkJBWVRBa1pTTVE0d0RBWURWUVFJREFWUVlYSnAKY3pFT01Bd0dBMVVFQnd3RlVHRnlhWE14RFRBTEJnTlZCQXNNQkV0cGJtUXhFREFPQmdOVkJBTU1CMk5oTG10cApibVF3Z2dJaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQ0R3QXdnZ0lLQW9JQ0FRRGdYdEN6WUdrQkhnYXVWVkdSClRzRGF2czFDa3l1NjFCLzlnWmlYeVVjSkZRaFlKeHZTWXRtYklIYUN1U2ZpdXA3T1ZnU3BEMjJ5TElJZVI4Z1EKMklGOWRhL1VRNWkvSXlYK0F1bVQxTkZUYUNmclpORTZScVNIcnNvT29YQVRHRHlEeU56bUJTWnM4UGlZL1RiRQozTTdFc1ZmUE9FUFdTN0VDZXRWM2tkVG1yL1FBK3lpSEd5c2lSTmI4dENZS2ZMbWNoK0VoWmdRUUdxODJJWDhqCnFDY08zd1o0bTkzOEN1dFlBbllINktod3Qyb3dGMHJSQmpyZk1seUIwcjVFMkMvNjhDS2ZvYTJJN0RUL3dla0UKVGx3c3hEd3Q1L0o3SjVIYmtWQUtha2xPWlV6RjZ3YVVSU0xTekk0L1ZtSE5sVFJoVEczb0loY3RyODdpd3pDNwo1RG1EVW9VeTc5TTROZjdvV3VQUzdjNU1pZTVqWW9nK3E5dU4zZmhDT0FyTHhFWHFjTlVqQ1ZnRmZURG0rK3E4CkMyVXdMQlVwV2t4RzBnMXBnMDZpYjBxTFM1b0F3YjRCRCt0azFlL2Y5NE1BZ3lpSXVvSXlpSlRrVUluVThKT0oKdHpTWVlZYmJwaFl1bHZJL1RHWkE3S0phdUxabmFRdW9jWktIZ2E3dmNnaUpXVmdyK3hDdjc5dW1xOXpmRmtXVQo4UERCVko2YVhsREJLS2ZHUkQ0VmhZRDVWeEtlTU5MTjlESGJPUXlDLytvWitneDBmTVNUc1VZMm9uRnN0U1lGClNwMXJqVEtFalAzTXg4Q1l5NzZsT014Sjg4cWE5NWk3SUp1RGVRRE9Gb1duQjJoMTRhcHN0V1E2TkdxQUNXSngKSTQ5OEorS1h6aEQ3cDVaY0RyaEJvWnZhSVFJREFRQUJvNEhCTUlHK01BOEdBMVVkRXdFQi93UUZNQU1CQWY4dwpIUVlEVlIwT0JCWUVGR3pRZ2NkY2RaOE9RMWdQVFJ5RlJvVmQwMkpGTUlHTEJnTlZIU01FZ1lNd2dZQ0FGR3pRCmdjZGNkWjhPUTFnUFRSeUZSb1ZkMDJKRm9WS2tVREJPTVFzd0NRWURWUVFHRXdKR1VqRU9NQXdHQTFVRUNBd0YKVUdGeWFYTXhEakFNQmdOVkJBY01CVkJoY21sek1RMHdDd1lEVlFRTERBUkxhVzVrTVJBd0RnWURWUVFEREFkagpZUzVyYVc1a2doUW5uN09tZUJkTzJXNDF2Z0tSWms5c25ucjlSREFOQmdrcWhraUc5dzBCQVFzRkFBT0NBZ0VBCmJtTWpSSGI2N0RJdy9RRjR4UjJtTXVOU1ZjbE5PbGx2dHNmOWxQaHpUVktPc1pJdUJkMVpjNjNNVW1GcUdRejQKdkxMczlma2VDb0Q3UTUzVStYY3JXT2cvUk9ZWGhhKzZ6cDI3aUVPSVMrTlZxdE9ZQXVpUVZwS3cxRVhCY2NpNwpuOE1nMHdDOXhHYWJsVUIwblRrWmNQbktWSjZkUE5ncGJDbFQybitPemNHZGFvdnkvZ1g5SU11bnpabGdjZ2xsClBWV3VKWWdIZDBKUlc5RGZOMnh1Y1BkRWxwZ1NodGRTenJ5YlFrTUVNMEpoL1I1UXJlNmVzaE5tanMxNTZja1AKaHpWRDFWL0k3NXlFdWVTKzNZZVJ5NS90M1c5MFZjVE5mYkZEd3huYXM1QnB3NWZ6MGxpM0h6Zm9BZ2tWZXV5aQpPWjROS0dUcStYdmJreDdmZG9PMnZidktJODBacVd0Zi81T3dEcU9ETXo5M1RLUEpZa0JYR012N2ZBcXNkdUN4Cnk0SEt4bHh6YVdnUmo5RHdyaVRBdFZRdDdXZkhhNmoyVVYvNGY5Rll6K0MwRG1mSGhYb2FvRnFGMFBLbjFCdk0KNnVzbitXM2RjK2VQV0FPKzlEK01udnp0QTNlQTRzcVhSWFM5RGpsZTY5QU1JblJmNk5oR2gxNndFNmhscjFtbQp1M21aZ2c3eUtZazVHM2RWSC9ydElxeTFiSXg1djdPYk9CVEY3d0t5empTNERsLzRENzE3YmtrS3lIK0JKMFRNCkZFa3BjdWIzZWhNYURZMExkblF3cUJXUG1xQTBDNE9VSnd6UzhqdUFLR3BQc0ovcHU4dnNrM2R4SjZ4VjZqYkcKaVFoSVZGbjR2ZWlIUm9iUmNMWTBCQXJkMTBodUtwTWJxMUZVbWhWSm9wbz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+                bindDN: cn=admin,dc=okdp,dc=io
+                bindPW: admin123
+                userSearch:
+                  baseDN: ou=Users,dc=okdp,dc=io
+                  filter: (objectClass=inetOrgPerson)
+                  username: uid
+                  idAttr: uid
+                  emailAttr: mail
+                  nameAttr: uid
+                  emailSuffix: okdp.io
+                groupSearch:
+                  baseDN: ou=Groups,dc=okdp,dc=io
+                  filter: (objectClass=posixgroup)
+                  userMatchers:
+                    - userAttr: uid
+                      groupAttr: memberUid
+                  nameAttr: cn
+          staticClients:
+            - name: "Jhub"
+              id: "Jhub"
+              secret: AsjhDFJcnsdlkjrEdEF
+              redirectURIs:
+                - "https://jhub.ingress.kind.local/hub/oauth_callback"
+            - name: "SparkHistoryServer"
+              id: "shs"
+              secret: "AsjhDFJcnsdlkjrEdEF"
+              redirectURIs:
+                - https://shs.ingress.kind.local/home
+        ingress:
+          enabled: true
+          className: "nginx"
+          annotations:
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            cert-manager.io/cluster-issuer: "my-public-ca"
+          hosts:
+            - host: dex.ingress.kind.local
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls:
+            - secretName: dex-tls
+              hosts:
+                - dex.ingress.kind.local

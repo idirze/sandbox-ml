@@ -8,3 +8,14 @@ deployments:
       - deployment: ingress-nginx
         module: main
 
+  - name: spark-history-server
+    enabled: true
+    component: spark-history-server
+    namespace: team1
+    vars:
+      eventLogDir:  s3a://bucket1/
+      s3:
+        url: http://minio-main.minio.svc:9000
+        accessKey: minio
+        secretKey: minio123
+        adminGroups: space-admin
