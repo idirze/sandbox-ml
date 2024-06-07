@@ -19,3 +19,9 @@ deployments:
         accessKey: minio
         secretKey: minio123
         adminGroups: space-admin
+
+  - name: superset
+    enabled: true
+    component: superset
+    namespace: superset
+    vars:
