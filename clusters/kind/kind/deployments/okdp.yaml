@@ -21,7 +21,7 @@ deployments:
         adminGroups: space-admin
 
   - name: superset
-    enabled: false
+    enabled: true
     component: superset
     namespace: superset
     vars:
