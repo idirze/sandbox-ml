@@ -9,7 +9,7 @@ deployments:
         module: main
 
   - name: spark-history-server
-    enabled: true
+    enabled: disabled
     component: spark-history-server
     namespace: team1
     vars:
@@ -24,4 +24,3 @@ deployments:
     enabled: true
     component: superset
     namespace: superset
-    vars:
