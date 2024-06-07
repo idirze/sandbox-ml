@@ -56,6 +56,11 @@ components:
                 secret: "AsjhDFJcnsdlkjrEdEF"
                 redirectURIs:
                   - https://shs.ingress.kind.local/home
+              - name: "Superset"
+                id: "superset"
+                secret: "DFJcnsdlkjrEAsjhdEF"
+                redirectURIs:
+                  - https://superset.ingress.kind.local/oauth-authorized/dex
           ingress:
             enabled: true
             className: "nginx"
