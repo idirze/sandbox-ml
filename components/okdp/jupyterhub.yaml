@@ -87,8 +87,8 @@ components:
           
           singleuser:
             image:
-              name: ghcr.io/kubedp/jupyter-kdp
-              tag: "3.2.3"
+              name: ghcr.io/kubotal/spark-notebook
+              tag: "2024-05-27-001"
           
             storage:
               homeMountPath: "/home/{username}"
