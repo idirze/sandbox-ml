@@ -9,7 +9,7 @@ deployments:
         module: main
 
   - name: spark-history-server
-    enabled: disabled
+    enabled: false
     component: spark-history-server
     namespace: team1
     vars:
