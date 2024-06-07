@@ -38,7 +38,7 @@ components:
               load_examples:
                 enabled: true
                 #SQLALCHEMY_EXAMPLES_URI: 'sqlite:////app/superset_home/examples.db'
-                SQLALCHEMY_EXAMPLES_URI: "postgresql+psycopg2://superset:superset@{{ .Release.Name }}-postgresql:5432"
+                SQLALCHEMY_EXAMPLES_URI: "postgresql+psycopg2://superset:superset@{{ .Meta.module.helmReleaseName }}-postgresql:5432"
                 #SQLALCHEMY_EXAMPLES_URI: 'trino://trino@trino:8080/nessie/examples'
           
             # Oauth2 configuration
@@ -79,7 +79,7 @@ components:
               # Connections to an existing database and cache
               connections:
                 # -- Change in case of bringing your own redis and then also set redis.enabled:false
-                redis_host: "{{ .Release.Name }}-redis-headless"
+                redis_host: "{{ .Meta.module.helmReleaseName }}-redis-headless"
                 redis_port: "6379"
                 redis_user: ""
                 # redis_password: superset
@@ -91,7 +91,7 @@ components:
                   enabled: false
                   ssl_cert_reqs: CERT_NONE
                 # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
-                db_host: "{{ .Release.Name }}-postgresql"
+                db_host: "{{ .Meta.module.helmReleaseName }}-postgresql"
                 db_port: "5432"
                 db_user: superset
                 db_pass: superset
