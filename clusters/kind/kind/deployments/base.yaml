@@ -6,7 +6,7 @@ deployments:
     namespace: dex
 
   - name: minio
-    enabled: false
+    enabled: true
     component: minio
     namespace: minio
     dependsOn:
