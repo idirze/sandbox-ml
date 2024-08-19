@@ -50,6 +50,9 @@ templates:
             {{- end }}
             interval: {{ .Config.chart.interval }}
         {{- end }}
+        upgrade:
+          remediation:
+            retries: {{ .Config.upgrade.remediation.retries }}
         install:
           createNamespace: {{ .Meta.deployment.createNamespace }}
           remediation:
